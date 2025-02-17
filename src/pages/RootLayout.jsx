@@ -6,7 +6,7 @@ import '@fontsource-variable/public-sans';
 const RootLayout = () => {
   return (
     <div>
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<p>Loading</p>}>
         <Outlet />
       </Suspense>
     </div>

@@ -1,14 +1,15 @@
-import ReactDOM from "react-dom/client";
+import ReactDOM from 'react-dom/client';
 import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from '@pages/RootLayout';
 import ModalProvider from '@context/ModalProvider';
 import HomePage from '@pages/HomePage';
-import { ThemeProvider } from "@mui/material";
+import { ThemeProvider } from '@mui/material';
 import theme from '@configs/muiConfig';
-import RegisterPage from "@pages/RegisterPage";
-
-
+import AuthLayout from '@pages/auth/AuthLayout';
+import RegisterPage from '@pages/auth/RegisterPage';
+import LoginPage from '@pages/auth/LoginPage';
+import OTPVerifyPage from '@pages/auth/OTPVerifyPage';
 
 const router = createBrowserRouter([
   {
@@ -17,9 +18,23 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <HomePage />,
-      },{
-        path: '/register',
-        element: <RegisterPage />,
+      },
+      {
+        element: <AuthLayout />,
+        children: [
+          {
+            path: '/register',
+            element: <RegisterPage />,
+          },
+          {
+            path: '/login',
+            element: <LoginPage />,
+          },
+          {
+            path: '/verify-otp',
+            element: <OTPVerifyPage />,
+          },
+        ],
       },
     ],
   },
@@ -27,9 +42,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <ThemeProvider theme={theme}>
-  <ModalProvider>
-    <RouterProvider router={router} />
-  </ModalProvider>
-  </ThemeProvider>
-
+    <ModalProvider>
+      <RouterProvider router={router} />
+    </ModalProvider>
+  </ThemeProvider>,
 );

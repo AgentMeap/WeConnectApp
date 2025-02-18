@@ -1,9 +1,10 @@
+import { FormHelperText } from '@mui/material';
 import { Controller } from 'react-hook-form';
 
-const FormField = ({ control, label, name, Component, type }) => {
+const FormField = ({ control, label, name, Component, type, error }) => {
   return (
     <div>
-      <p className="text-dark-100 mb-1 text-sm font-bold">{label}</p>
+      <p className="mb-1 text-sm font-bold text-dark-100">{label}</p>
       <Controller
         name={name}
         control={control}
@@ -15,10 +16,12 @@ const FormField = ({ control, label, name, Component, type }) => {
               name={name}
               type={type}
               control={control}
+              error={error?.message}
             />
           );
         }}
       />
+      {error && <FormHelperText error={true}>{error.message}</FormHelperText>}
     </div>
   );
 };

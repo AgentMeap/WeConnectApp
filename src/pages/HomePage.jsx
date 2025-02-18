@@ -1,11 +1,12 @@
-import { Button } from "@mui/material"
+import { Button } from '@mui/material';
 
-const HomePage = () => {
+function HomePage() {
   return (
     <div>
       <p>Home Page</p>
       <Button variant="contained">Login</Button>
     </div>
-  )
+  );
 }
-export default HomePage
+
+export default HomePage;

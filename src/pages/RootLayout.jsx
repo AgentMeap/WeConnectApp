@@ -14,18 +14,18 @@ const RootLayout = () => {
     return state.snackbar;
   });
 
+  const handleClose = () => {
+    dispatch(closeSnackbar());
+  };
+
   return (
     <div>
       <Suspense fallback={<p>Loading</p>}>
         <Outlet />
       </Suspense>
-      <Snackbar
-        open={open}
-        autoHideDuration={4000}
-        onClose={dispatch(closeSnackbar())}
-      >
+      <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
         <Alert
-          // onClose={''}
+          onClose={handleClose}
           severity={type}
           variant="filled"
           sx={{ width: '100%' }}
@@ -36,4 +36,5 @@ const RootLayout = () => {
     </div>
   );
 };
+
 export default RootLayout;
